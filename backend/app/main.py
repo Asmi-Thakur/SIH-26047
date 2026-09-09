@@ -1,10 +1,8 @@
 """MediKiosk backend entrypoint.
 
 Phase 1 scope: application wiring, CORS, exception handling, router
-registration and health endpoints. Business routers for later phases are
-registered but return structured 501 responses.
+registration and health endpoints.
 """
-from sqlalchemy.dialects.sqlite import pysqlcipher
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -45,25 +43,21 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS: explicit allow-list only (see ARCHITECTURE.md security posture).
-origins = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "http://localhost:3000",
-    "https://sih-26047-ask0a2irq-community-prpject.vercel.app",
-]
-
+# CORS: supports localhost, your specific Vercel URL, and all Vercel preview deployments
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "http://localhost:3000",
         "https://sih-26047-ask0a2irq-community-prpject.vercel.app",
     ],
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 register_exception_handlers(app)
 
 # --- Routers (all business routers under /api) ---
