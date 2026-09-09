@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* MediKiosk base styles (Phase 1).
+   Tailwind v4 — utilities come from the @tailwindcss/vite plugin.
+   Phase 2 adds the kiosk design system (large touch targets, high contrast,
+   audio-first patterns) here or in a dedicated theme file. */

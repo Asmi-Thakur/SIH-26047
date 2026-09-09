@@ -1,0 +1,22 @@
+# --- Real OCR engine (Phase 4/2) — OPTIONAL extra ---------------------------
+#
+# PaddleOCR needs Python 3.10–3.12 (no paddlepaddle wheels exist for 3.13/3.14).
+# The project venv is created with Python 3.12 (uv), so on a py3.12 host:
+#
+#     cd backend
+#     uv pip install -r requirements-dev.txt -r requirements-ocr.txt
+#
+# Verified working combination (macOS ARM64, CPython 3.12.14):
+#     paddlepaddle==3.3.1 + paddleocr==3.7.0 + pypdfium2==5.13.0 + pillow==12.3.0
+# Real OCR of a synthetic lab report ran at ~0.99 mean confidence (3–4 s warm).
+#
+# With these packages importable and OCR_PROVIDER=auto (default), documents
+# are processed with REAL PaddleOCR. Without them, the registry falls back to
+# the honest deterministic mock (labelled mocked: true everywhere).
+# Docker alternative (any host Python): the backend Dockerfile can be built
+# FROM python:3.12-slim and this file installed inside the container.
+
+paddlepaddle>=3.0,<4
+paddleocr>=3.0,<4
+pypdfium2>=4.30          # PDF -> page images for OCR
+pillow>=10.0             # image decoding

@@ -1,0 +1,360 @@
+{
+  "version": 2,
+  "sections": [
+    "chief_complaint",
+    "hpi",
+    "past_history",
+    "medications",
+    "allergies",
+    "family_history",
+    "personal_history",
+    "ros",
+    "ayush"
+  ],
+  "questions": [
+    {
+      "id": "cc_001",
+      "section": "chief_complaint",
+      "prompt": { "en": "What brought you to the hospital today?", "hi": "आज आप अस्पताल क्यों आए हैं?" },
+      "input": "choice",
+      "required": true,
+      "allow_other": true,
+      "choices": [
+        { "code": "chest_pain", "label": { "en": "Chest pain", "hi": "सीने में दर्द" } },
+        { "code": "abdominal_pain", "label": { "en": "Stomach / abdominal pain", "hi": "पेट में दर्द" } },
+        { "code": "headache", "label": { "en": "Headache", "hi": "सिरदर्द" } },
+        { "code": "fever", "label": { "en": "Fever", "hi": "बुखार" } },
+        { "code": "cough_breathlessness", "label": { "en": "Cough or breathing difficulty", "hi": "खांसी या सांस की तकलीफ" } },
+        { "code": "vomiting_diarrhea", "label": { "en": "Vomiting or loose motions", "hi": "उल्टी या दस्त" } },
+        { "code": "joint_pain", "label": { "en": "Joint pain", "hi": "जोड़ों का दर्द" } },
+        { "code": "weakness_dizziness", "label": { "en": "Weakness or dizziness", "hi": "कमज़ोरी या चक्कर" } },
+        { "code": "skin_problem", "label": { "en": "Skin problem", "hi": "त्वचा की समस्या" } }
+      ]
+    },
+    {
+      "id": "hpi_001",
+      "section": "hpi",
+      "prompt": { "en": "When did your problem start?", "hi": "यह समस्या कब शुरू हुई?" },
+      "input": "choice",
+      "choices": [
+        { "code": "hours", "label": { "en": "A few hours ago", "hi": "कुछ घंटे पहले" } },
+        { "code": "1_3_days", "label": { "en": "1–3 days ago", "hi": "1–3 दिन पहले" } },
+        { "code": "1_2_weeks", "label": { "en": "1–2 weeks ago", "hi": "1–2 सप्ताह पहले" } },
+        { "code": "months", "label": { "en": "More than a month ago", "hi": "एक महीने से पहले" } }
+      ]
+    },
+    {
+      "id": "hpi_002",
+      "section": "hpi",
+      "prompt": { "en": "Is the problem present all the time or does it come and go?", "hi": "समस्या हर समय रहती है या आती-जाती रहती है?" },
+      "input": "choice",
+      "choices": [
+        { "code": "continuous", "label": { "en": "All the time", "hi": "हर समय" } },
+        { "code": "intermittent", "label": { "en": "Comes and goes", "hi": "आती-जाती है" } }
+      ]
+    },
+    {
+      "id": "hpi_003",
+      "section": "hpi",
+      "prompt": { "en": "How severe is it?", "hi": "यह कितना गंभीर है?" },
+      "input": "choice",
+      "choices": [
+        { "code": "mild", "label": { "en": "Mild", "hi": "हल्का" } },
+        { "code": "moderate", "label": { "en": "Moderate", "hi": "मध्यम" } },
+        { "code": "severe", "label": { "en": "Severe", "hi": "गंभीर" } }
+      ]
+    },
+    {
+      "id": "hpi_004",
+      "section": "hpi",
+      "prompt": { "en": "Do you have any other symptoms along with it?", "hi": "क्या इसके साथ कोई और लक्षण भी हैं?" },
+      "input": "multi",
+      "choices": [
+        { "code": "breathlessness", "label": { "en": "Breathing difficulty", "hi": "सांस लेने में तकलीफ" } },
+        { "code": "sweating", "label": { "en": "Sweating", "hi": "पसीना" } },
+        { "code": "nausea", "label": { "en": "Nausea", "hi": "जी मिचलाना" } },
+        { "code": "vomiting", "label": { "en": "Vomiting", "hi": "उल्टी" } },
+        { "code": "fever", "label": { "en": "Fever", "hi": "बुखार" } },
+        { "code": "dizziness", "label": { "en": "Dizziness", "hi": "चक्कर" } },
+        { "code": "facial_weakness", "label": { "en": "Facial weakness / drooping face", "hi": "चेहरे पर कमज़ोरी / झुका चेहरा" } },
+        { "code": "arm_weakness", "label": { "en": "Weakness in an arm or leg", "hi": "हाथ या पैर में कमज़ोरी" } },
+        { "code": "speech_difficulty", "label": { "en": "Trouble speaking", "hi": "बोलने में कठिनाई" } },
+        { "code": "none", "label": { "en": "None of these", "hi": "इनमें से कोई नहीं" } }
+      ]
+    },
+    {
+      "id": "hpi_005",
+      "section": "hpi",
+      "for_complaints": ["chest_pain", "abdominal_pain", "headache", "joint_pain"],
+      "prompt": { "en": "Where exactly do you feel it?", "hi": "यह ठीक कहाँ महसूस होता है?" },
+      "input": "text"
+    },
+    {
+      "id": "hpi_006",
+      "section": "hpi",
+      "for_complaints": ["chest_pain"],
+      "prompt": { "en": "Does the pain spread anywhere else, for example to your arm, neck, or back?", "hi": "क्या दर्द कहीं और फैलता है, जैसे हाथ, गर्दन या पीठ में?" },
+      "input": "choice",
+      "choices": [
+        { "code": "left_arm", "label": { "en": "Yes, to my left arm", "hi": "हाँ, बाएँ हाथ में" } },
+        { "code": "neck_jaw", "label": { "en": "Yes, to my neck or jaw", "hi": "हाँ, गर्दन या जबड़े में" } },
+        { "code": "back", "label": { "en": "Yes, to my back", "hi": "हाँ, पीठ में" } },
+        { "code": "no", "label": { "en": "No, it stays in one place", "hi": "नहीं, एक ही जगह रहता है" } }
+      ]
+    },
+    {
+      "id": "hpi_007",
+      "section": "hpi",
+      "for_complaints": ["chest_pain", "abdominal_pain", "headache", "joint_pain"],
+      "prompt": { "en": "Does anything make it better or worse?", "hi": "क्या किसी चीज़ से यह कम या ज़्यादा होता है?" },
+      "input": "multi",
+      "choices": [
+        { "code": "worse_walking", "label": { "en": "Worse with walking / activity", "hi": "चलने-फिरने से बढ़ जाता है" } },
+        { "code": "worse_eating", "label": { "en": "Worse after eating", "hi": "खाने के बाद बढ़ जाता है" } },
+        { "code": "better_rest", "label": { "en": "Better with rest", "hi": "आराम से कम हो जाता है" } },
+        { "code": "better_medicine", "label": { "en": "Better after taking medicine", "hi": "दवा लेने के बाद कम होता है" } },
+        { "code": "no_change", "label": { "en": "Nothing changes it", "hi": "किसी चीज़ से नहीं बदलता" } }
+      ]
+    },
+    {
+      "id": "hpi_008",
+      "section": "hpi",
+      "prompt": { "en": "Tell us anything else about your problem.", "hi": "अपनी समस्या के बारे में कुछ और बताइए।" },
+      "input": "text",
+      "required": false
+    },
+    {
+      "id": "ph_001",
+      "section": "past_history",
+      "prompt": { "en": "Do you have any of these illnesses?", "hi": "क्या आपको इनमें से कोई बीमारी है?" },
+      "input": "multi",
+      "allow_other": true,
+      "choices": [
+        { "code": "diabetes", "label": { "en": "Diabetes (sugar)", "hi": "डायबिटीज़ (शुगर)" } },
+        { "code": "hypertension", "label": { "en": "High blood pressure", "hi": "उच्च रक्तचाप" } },
+        { "code": "heart_disease", "label": { "en": "Heart disease", "hi": "हृदय रोग" } },
+        { "code": "asthma", "label": { "en": "Asthma", "hi": "अस्थमा" } },
+        { "code": "thyroid", "label": { "en": "Thyroid problem", "hi": "थायरॉइड" } },
+        { "code": "tb", "label": { "en": "Tuberculosis (TB)", "hi": "टीबी" } },
+        { "code": "none", "label": { "en": "None of these", "hi": "इनमें से कोई नहीं" } }
+      ]
+    },
+    {
+      "id": "ph_002",
+      "section": "past_history",
+      "prompt": { "en": "Have you ever had surgery?", "hi": "क्या आपका कभी ऑपरेशन हुआ है?" },
+      "input": "choice",
+      "choices": [
+        { "code": "no", "label": { "en": "No", "hi": "नहीं" } },
+        { "code": "yes", "label": { "en": "Yes", "hi": "हाँ" } }
+      ],
+      "allow_other": true
+    },
+    {
+      "id": "med_001",
+      "section": "medications",
+      "prompt": { "en": "Are you taking any medicines right now?", "hi": "क्या आप अभी कोई दवा ले रहे हैं?" },
+      "input": "choice",
+      "choices": [
+        { "code": "no", "label": { "en": "No medicines", "hi": "कोई दवा नहीं" } },
+        { "code": "yes", "label": { "en": "Yes, I take medicines", "hi": "हाँ, दवाएँ लेता/लेती हूँ" } }
+      ],
+      "allow_other": true
+    },
+    {
+      "id": "med_002",
+      "section": "medications",
+      "prompt": { "en": "Please tell us the names and doses of your medicines (tap Skip if you take none).", "hi": "कृपया अपनी दवाओं के नाम और मात्रा बताइए (नहीं लेते हैं तो Skip दबाएँ)।" },
+      "input": "text",
+      "required": false
+    },
+    {
+      "id": "alg_001",
+      "section": "allergies",
+      "prompt": { "en": "Are you allergic to any medicine?", "hi": "क्या आपको किसी दवा से एलर्जी है?" },
+      "input": "multi",
+      "choices": [
+        { "code": "penicillin", "label": { "en": "Penicillin", "hi": "पेनिसिलिन" } },
+        { "code": "aspirin", "label": { "en": "Aspirin / painkillers", "hi": "एस्पिरिन / दर्द की दवा" } },
+        { "code": "sulfa", "label": { "en": "Sulfa drugs", "hi": "सल्फ़ा दवाएँ" } },
+        { "code": "none", "label": { "en": "No medicine allergy", "hi": "कोई दवा एलर्जी नहीं" } }
+      ],
+      "allow_other": true
+    },
+    {
+      "id": "fam_001",
+      "section": "family_history",
+      "prompt": { "en": "Do any close family members have these illnesses?", "hi": "क्या आपके किसी करीबी परिवार के सदस्य को ये बीमारियाँ हैं?" },
+      "input": "multi",
+      "choices": [
+        { "code": "diabetes", "label": { "en": "Diabetes", "hi": "डायबिटीज़" } },
+        { "code": "heart_disease", "label": { "en": "Heart disease", "hi": "हृदय रोग" } },
+        { "code": "hypertension", "label": { "en": "High blood pressure", "hi": "उच्च रक्तचाप" } },
+        { "code": "cancer", "label": { "en": "Cancer", "hi": "कैंसर" } },
+        { "code": "none", "label": { "en": "None of these", "hi": "इनमें से कोई नहीं" } }
+      ]
+    },
+    {
+      "id": "per_001",
+      "section": "personal_history",
+      "prompt": { "en": "Do you smoke or use tobacco?", "hi": "क्या आप धूम्रपान या तम्बाकू का सेवन करते हैं?" },
+      "input": "choice",
+      "choices": [
+        { "code": "never", "label": { "en": "Never", "hi": "कभी नहीं" } },
+        { "code": "past", "label": { "en": "Used to, not now", "hi": "पहले करता/करती था/थी, अब नहीं" } },
+        { "code": "current", "label": { "en": "Yes, currently", "hi": "हाँ, अभी करता/करती हूँ" } }
+      ]
+    },
+    {
+      "id": "per_002",
+      "section": "personal_history",
+      "prompt": { "en": "Do you drink alcohol?", "hi": "क्या आप शराब पीते हैं?" },
+      "input": "choice",
+      "choices": [
+        { "code": "never", "label": { "en": "Never", "hi": "कभी नहीं" } },
+        { "code": "occasional", "label": { "en": "Occasionally", "hi": "कभी-कभी" } },
+        { "code": "daily", "label": { "en": "Daily", "hi": "रोज़" } }
+      ]
+    },
+    {
+      "id": "ros_001",
+      "section": "ros",
+      "prompt": { "en": "Any other general symptoms like fever, weight loss, or tiredness?", "hi": "क्या बुखार, वज़न घटना या थकान जैसे कोई और लक्षण हैं?" },
+      "input": "multi",
+      "choices": [
+        { "code": "fever", "label": { "en": "Fever", "hi": "बुखार" } },
+        { "code": "weight_loss", "label": { "en": "Weight loss", "hi": "वज़न घटना" } },
+        { "code": "fatigue", "label": { "en": "Tiredness", "hi": "थकान" } },
+        { "code": "appetite_loss", "label": { "en": "Poor appetite", "hi": "भूख कम लगना" } },
+        { "code": "none", "label": { "en": "None of these", "hi": "इनमें से कोई नहीं" } }
+      ]
+    },
+
+    {
+      "id": "ay_001",
+      "section": "ayush",
+      "department_for": ["ayush"],
+      "prompt": { "en": "How is your appetite? (Ahara Shakti)", "hi": "आपकी भूख कैसी है? (आहार शक्ति)" },
+      "input": "choice",
+      "choices": [
+        { "code": "good", "label": { "en": "Good — I eat full meals", "hi": "अच्छी — पूरा भोजन करता/करती हूँ" } },
+        { "code": "moderate", "label": { "en": "Moderate", "hi": "मध्यम" } },
+        { "code": "poor", "label": { "en": "Poor — very little", "hi": "कम — बहुत थोड़ा" } }
+      ]
+    },
+    {
+      "id": "ay_002",
+      "section": "ayush",
+      "department_for": ["ayush"],
+      "prompt": { "en": "How much food do you usually eat? (Ahara Shakti — intake)", "hi": "आप सामान्यतः कितना भोजन करते हैं? (आहार शक्ति — मात्रा)" },
+      "input": "choice",
+      "choices": [
+        { "code": "large", "label": { "en": "Large quantity", "hi": "अधिक मात्रा" } },
+        { "code": "moderate", "label": { "en": "Moderate quantity", "hi": "मध्यम मात्रा" } },
+        { "code": "small", "label": { "en": "Small quantity", "hi": "अल्प मात्रा" } }
+      ]
+    },
+    {
+      "id": "ay_003",
+      "section": "ayush",
+      "department_for": ["ayush"],
+      "prompt": { "en": "How well do you tolerate food? (Satmya)", "hi": "आप भोजन को कितना सहन करते हैं? (सात्म्य)" },
+      "input": "choice",
+      "choices": [
+        { "code": "all_foods", "label": { "en": "I tolerate all foods", "hi": "सभी भोजन सहन करता/करती हूँ" } },
+        { "code": "some_foods", "label": { "en": "Only some foods suit me", "hi": "कुछ भोजन ही उपयुक्त है" } },
+        { "code": "unsure", "label": { "en": "I am not sure", "hi": "मुझे नहीं पता" } }
+      ]
+    },
+    {
+      "id": "ay_004",
+      "section": "ayush",
+      "department_for": ["ayush"],
+      "prompt": { "en": "How is your daily routine? (Dinacharya / Vihara)", "hi": "आपकी दिनचर्या कैसी है? (दिनचर्या / विहार)" },
+      "input": "choice",
+      "choices": [
+        { "code": "regular", "label": { "en": "Regular — same timings daily", "hi": "नियमित — रोज़ एक ही समय" } },
+        { "code": "irregular", "label": { "en": "Irregular — timings change", "hi": "अनियमित — समय बदलता रहता है" } }
+      ]
+    },
+    {
+      "id": "ay_005",
+      "section": "ayush",
+      "department_for": ["ayush"],
+      "prompt": { "en": "How well do you sleep? (Nidra)", "hi": "आपकी नींद कैसी है? (निद्रा)" },
+      "input": "choice",
+      "choices": [
+        { "code": "sound", "label": { "en": "Sound sleep", "hi": "गहरी नींद" } },
+        { "code": "disturbed", "label": { "en": "Disturbed / broken sleep", "hi": "बार-बार टूटने वाली नींद" } },
+        { "code": "difficulty", "label": { "en": "Difficulty falling asleep", "hi": "नींद आने में कठिनाई" } }
+      ]
+    },
+    {
+      "id": "ay_006",
+      "section": "ayush",
+      "department_for": ["ayush"],
+      "prompt": { "en": "How is your bowel movement? (Mala)", "hi": "आपका मल त्याग कैसा है? (मल)" },
+      "input": "choice",
+      "choices": [
+        { "code": "regular", "label": { "en": "Regular, easy", "hi": "नियमित, आसान" } },
+        { "code": "constipated", "label": { "en": "Hard / irregular", "hi": "कठिन / अनियमित" } },
+        { "code": "loose", "label": { "en": "Loose motions", "hi": "दस्त" } }
+      ]
+    },
+    {
+      "id": "ay_007",
+      "section": "ayush",
+      "department_for": ["ayush"],
+      "prompt": { "en": "How is your stamina for physical activity? (Vyayama Shakti)", "hi": "शारीरिक परिश्रम की आपकी क्षमता कैसी है? (व्यायाम शक्ति)" },
+      "input": "choice",
+      "choices": [
+        { "code": "high", "label": { "en": "High — I can work long without tiredness", "hi": "अधिक — बिना थकान लंबे समय काम कर सकता/करती हूँ" } },
+        { "code": "moderate", "label": { "en": "Moderate", "hi": "मध्यम" } },
+        { "code": "low", "label": { "en": "Low — tired quickly", "hi": "कम — जल्दी थक जाता/जाती हूँ" } }
+      ]
+    },
+    {
+      "id": "ay_008",
+      "section": "ayush",
+      "department_for": ["ayush"],
+      "prompt": { "en": "How is your body built? (Sara / Samhanana)", "hi": "आपका शरीर कैसा बना है? (सार / संहनन)" },
+      "input": "choice",
+      "choices": [
+        { "code": "sturdy", "label": { "en": "Well-built, strong joints", "hi": "सुदृढ़, मज़बूत जोड़" } },
+        { "code": "moderate", "label": { "en": "Moderate build", "hi": "मध्यम बनावट" } },
+        { "code": "delicate", "label": { "en": "Delicate / slender", "hi": "दुर्बल / दुबला" } }
+      ]
+    },
+    {
+      "id": "ay_009",
+      "section": "ayush",
+      "department_for": ["ayush"],
+      "prompt": { "en": "How is your mood and mental strength? (Sattva)", "hi": "आपका मन और मानसिक बल कैसा है? (सत्त्व)" },
+      "input": "choice",
+      "choices": [
+        { "code": "calm", "label": { "en": "Calm and steady", "hi": "शांत और स्थिर" } },
+        { "code": "reactive", "label": { "en": "Easily upset / anxious", "hi": "जल्दी व्यथित / चिंतित" } }
+      ]
+    },
+    {
+      "id": "ay_010",
+      "section": "ayush",
+      "department_for": ["ayush"],
+      "prompt": { "en": "How is your thirst and hydration? (Ahara-Vihara)", "hi": "आपकी प्यास और जल सेवन कैसा है? (आहार-विहार)" },
+      "input": "choice",
+      "choices": [
+        { "code": "normal", "label": { "en": "Normal thirst, enough water", "hi": "सामान्य प्यास, पर्याप्त पानी" } },
+        { "code": "excessive", "label": { "en": "Excessive thirst", "hi": "अत्यधिक प्यास" } },
+        { "code": "low", "label": { "en": "Drink very little water", "hi": "बहुत कम पानी पीता/पीती हूँ" } }
+      ]
+    },
+    {
+      "id": "ay_011",
+      "section": "ayush",
+      "department_for": ["ayush"],
+      "prompt": { "en": "Anything else about your diet or lifestyle? (optional)", "hi": "अपने आहार या जीवनशैली के बारे में कुछ और बताइए (वैकल्पिक)" },
+      "input": "text",
+      "required": false
+    }
+  ]
+}

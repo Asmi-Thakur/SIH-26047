@@ -1,0 +1,51 @@
+# ---- Secrets ----
+.env
+.env.*
+!.env.example
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# ---- Node / frontend ----
+node_modules/
+dist/
+dist-ssr/
+.vite/
+coverage/
+*.local
+
+# ---- Local scratch DBs (sqlite used only for offline tests) ----
+*.sqlite3
+*.db
+*.sqlite
+alembic_test.db
+
+# ---- Uploaded/generated files (recreated by the seed script) ----
+storage/uploads/
+backend/storage/
+
+# ---- Tooling / OS junk ----
+.freebuff/
+*.zip
+!*.gitkeep
+.python-version
+uv.lock
+
+# ---- Editors / OS ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ---- Logs ----
+*.log
+logs/

@@ -1,0 +1,1 @@
+"""Case package (Phase 6): unified case assembly, summary, lifecycle."""

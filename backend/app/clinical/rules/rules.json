@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "id": "CHEST_PAIN_PLUS_DYSPNEA",
+      "priority": "urgent",
+      "all_of": [
+        { "bucket": "chief_complaint", "symptom": "chest_pain" },
+        { "bucket": "associated", "symptom": "breathlessness" }
+      ],
+      "message_en": "Chest pain with breathing difficulty reported. Immediate human triage required.",
+      "message_hi": "सीने में दर्द के साथ सांस की तकलीफ बताई गई है। तुरंत मानव ट्राइएज आवश्यक है।"
+    },
+    {
+      "id": "STROKE_LIKE_SYMPTOMS",
+      "priority": "urgent",
+      "any_of": [
+        { "bucket": "associated", "symptom": "facial_weakness" },
+        { "bucket": "associated", "symptom": "arm_weakness" },
+        { "bucket": "associated", "symptom": "speech_difficulty" }
+      ],
+      "message_en": "Possible acute neurological red flag reported. Immediate human triage required.",
+      "message_hi": "संभावित गंभीर न्यूरोलॉजिकल लक्षण बताए गए हैं। तुरंत मानव ट्राइएज आवश्यक है।"
+    },
+    {
+      "id": "SEVERE_BREATHING_DIFFICULTY",
+      "priority": "urgent",
+      "all_of": [
+        { "bucket": "chief_complaint", "symptom": "cough_breathlessness" },
+        { "bucket": "severity", "symptom": "severe" }
+      ],
+      "message_en": "Severe breathing difficulty reported. Immediate human triage required.",
+      "message_hi": "सांस लेने में गंभीर तकलीफ बताई गई है। तुरंत मानव ट्राइएज आवश्यक है।"
+    }
+  ]
+}

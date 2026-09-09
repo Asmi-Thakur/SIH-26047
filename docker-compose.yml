@@ -1,0 +1,102 @@
+# ============================================================
+# MediKiosk — local development stack (Phase 1)
+#
+# Services: postgres, backend, frontend
+#
+# Usage:
+#   cp .env.example .env        # then edit as needed
+#   docker compose up --build
+#
+# URLs:
+#   Frontend : http://localhost:5173
+#   Backend  : http://localhost:8000  (Swagger: /docs)
+#   Postgres : localhost:5432
+#
+# FHIR (HAPI) is intentionally NOT started in Phase 1. When you
+# reach the FHIR milestone, uncomment the `fhir` service and set
+# FHIR_BASE_URL=http://fhir:8080/fhir in your .env (default above).
+# ============================================================
+
+name: medikiosk
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: medikiosk-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: medikiosk
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d medikiosk"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+    container_name: medikiosk-backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./backend:/app
+    env_file:
+      - .env
+    environment:
+      # In Docker the database host is the compose service name.
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@postgres:5432/medikiosk
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8000/api/health', timeout=3).status==200 else 1)"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      target: dev
+    container_name: medikiosk-frontend
+    command: npm run dev -- --host 0.0.0.0 --port 5173
+    volumes:
+      - ./frontend:/app
+      - frontend_node_modules:/app/node_modules
+    environment:
+      VITE_API_BASE_URL: http://localhost:8000
+    ports:
+      - "5173:5173"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # --- Optional: local FHIR R4 server (enable for the FHIR milestone) ---
+  # fhir:
+  #   image: hapiproject/hapi:v7.4.0
+  #   container_name: medikiosk-fhir
+  #   ports:
+  #     - "8080:8080"
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "wget -q --spider http://localhost:8080/fhir/metadata || exit 1"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 10
+
+volumes:
+  postgres_data:
+  frontend_node_modules:

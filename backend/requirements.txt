@@ -1,0 +1,17 @@
+# --- Web framework ---
+fastapi>=0.115
+uvicorn[standard]>=0.30
+
+# --- Data / validation ---
+pydantic>=2.8
+pydantic-settings>=2.4
+SQLAlchemy>=2.0.30
+greenlet>=3.0  # required by async SQLAlchemy (skipped as 'conditional' by uv)
+asyncpg>=0.29
+alembic>=1.13
+
+# --- HTTP client (health checks, future provider adapters) ---
+httpx>=0.27
+
+# --- Multipart uploads (used from Phase 5 onward) ---
+python-multipart>=0.0.9
