@@ -37,7 +37,9 @@ async def api_health(session: DbSession, settings: AppSettings) -> HealthRespons
     try:
         await session.execute(text("SELECT 1"))
     except Exception as exc:
-        database = f"unavailable: {type(exc).__name__} ({exc})"
+        from urllib.parse import urlparse
+        parsed = urlparse(settings.database_url)
+        database = f"unavailable at {parsed.hostname}: {type(exc).__name__} ({exc})"
 
     return HealthResponse(
         status="ok",
