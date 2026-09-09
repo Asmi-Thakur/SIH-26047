@@ -45,16 +45,23 @@ app = FastAPI(
 )
 
 # CORS: explicit allow-list only (see ARCHITECTURE.md security posture).
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://sih-26047-ask0a2irq-community-prpject.vercel.app/"
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "https://sih-26047-ask0a2irq-community-prpject.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 register_exception_handlers(app)
 
 # --- Routers (all business routers under /api) ---
