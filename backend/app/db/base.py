@@ -19,8 +19,8 @@ NAMING_CONVENTION = {
 
 
 def utcnow() -> datetime:
-    """Timezone-aware 'now' for Python-side defaults."""
-    return datetime.now(timezone.utc)
+    """UTC 'now' compatible with asyncpg and PostgreSQL timestamp columns."""
+    return datetime.now(timezone.utc).replace(tzinfo=None)
 
 
 class Base(DeclarativeBase):

@@ -4,6 +4,7 @@ Phase 1 scope: application wiring, CORS, exception handling, router
 registration and health endpoints. Business routers for later phases are
 registered but return structured 501 responses.
 """
+from sqlalchemy.dialects.sqlite import pysqlcipher
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -49,6 +50,7 @@ origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:3000",
+    "https://sih-26047-ask0a2irq-community-prpject.vercel.app",
 ]
 
 app.add_middleware(
